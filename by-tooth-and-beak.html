@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>By Tooth and Beak</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="project.css">
+        <style>
+            .inspiration-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+                margin: 24px 0;
+            }
+            .inspiration-item figure {
+                margin: 0 0 10px;
+            }
+            .inspiration-item img {
+                width: 100%;
+                border-radius: 6px;
+                display: block;
+            }
+            .inspiration-item p {
+                margin: 0;
+            }
+
+            .video-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 12px;
+                padding: 0 40px;
+            }
+            .video-grid figure {
+                margin: 0;
+            }
+            .video-grid video {
+                width: 100%;
+                display: block;
+                border-radius: 6px;
+            }
+            .video-grid figcaption {
+                text-align: center;
+                font-size: 0.9vw;
+                color: rgba(44,36,52,0.55);
+                margin-top: 8px;
+            }
+            .video-grid figcaption::before {
+                counter-increment: fig;
+                content: "Figure " counter(fig) " — ";
+            }
+        </style>
+    </head>
+<body>
+    <div class="banner"></div>
+    <header>
+        <nav class="links">
+            <a href="index.html" class="home">home</a>
+            <a href="aboutme.html" class="home">my person</a>
+            <a href="art.html" class="home">my art</a>
+            <a href="projects.html" class="home">my projects</a>
+            <a href="contact.html" class="home">my contact</a>
+        </nav>
+    </header>
+
+    <br>
+    <div class="hero">
+        <img src="assets/images/tooth.png" alt="By Tooth and Beak">
+        <div class="hero-title">
+            <h1>By Tooth and Beak</h1>
+            <p>An interactive visualization of bird diets</p>
+        </div>
+    </div>
+
+    <div class="article">
+        <p>
+            "What's that red flash in the tree? There, behind those branches
+            and up against that cloud!"</p>
+        <p> The sighting team all looked up, some
+            raising binoculars, just to steal a glimpse of the speckled little
+            creature tucked away from our common paths. </p>
+        <p>
+            <em> Do they have a home? How far away are they from their friends or 
+                family? Are they searching for food? Or simply on their way to watch 
+                frogs mingle along the bankside?</em>
+            I stood and listened to them sing. Distant in the sylvan grove of maples
+            and oaks, they thread their calls with the winter breeze. Flitting from
+            one branch to another, each searches for their next meal — some for seeds
+            and pine cones, others for insects hiding beneath the bark.
+        </p>
+        <p> By tooth and beak, each species delicately picks what's served in
+            nature's buffet tonight.</p>
+        <p>
+            By tooth and beak, let us explore what birds eat.</p>
+
+        <p><a href="https://natsuki615.github.io/By-Tooth-And-Beak/" target="_blank">View the interactive demo</a></p>
+        <p><a href="https://github.com/natsuki615/By-Tooth-And-Beak" target="_blank">View the GitHub repo</a></p>
+
+        <h2>Project Features</h2>
+        <p> By Tooth And Beak is an interactive visualization of bird diets using
+            data from the Avian Diet Database and bird images from the Cornell Lab
+            of Ornithology. Each dot on the map is a bird species, positioned in
+            2D space by diet similarity so that birds eating similar things cluster
+            together. The user can hover over a dot to see the bird's name and top prey items,
+            click to trigger an animation themed to what it eats, and watch 36
+            bird-eating predators shoot arrows toward each of their prey species
+            across the map.</p>
+        <p>
+            This project identifies 13 dominant prey groups: </p>
+        <ul>
+            <li>
+                Insecta: insects, the most common prey group across North American birds </li>
+            <li>
+                Magnoliopsida: flowering plants, including seeds, fruits, and berries </li>
+            <li>
+                Teleostei: ray-finned fish, dominant among waterbirds and raptors </li>
+            <li>
+                Mammalia: small mammals like rodents and shrews, common among owls and hawks </li>
+            <li>
+                Malacostraca: crustaceans such as crabs and shrimp, typical of shorebirds </li>
+            <li>
+                Cephalopoda: squid and octopus, found among seabirds like albatrosses </li>
+            <li>
+                Euchelicerata: spiders and mites, a secondary prey group for many insectivores </li>
+            <li>
+                Gastropoda: snails and slugs, common among wading birds </li>
+            <li>
+                Bivalvia: clams and mussels, typical of diving ducks and shorebirds </li>
+            <li>
+                Pinopsida: conifers, including pine seeds and needles, favored by certain finches and crossbills </li>
+            <li>
+                Aves: other birds, characteristic of falcons and predatory species </li>
+            <li>
+                Other: prey classes that appear in fewer species across the database </li>
+            <li>
+                No Data: species present in the database with insufficient diet records to determine a dominant prey group </li>
+        </ul>
+    </div>
+    
+    <div class="video-grid">
+        <figure>
+            <video src="assets/videos/aves.mov" autoplay loop muted playsinline></video>
+            <figcaption>Aves</figcaption></figure>
+        <figure>
+            <video src="assets/videos/bee.mov" autoplay loop muted playsinline></video>
+            <figcaption>Insecta</figcaption></figure>
+        <figure>
+            <video src="assets/videos/bivalvia.mov" autoplay loop muted playsinline></video>
+            <figcaption>Bivalvia</figcaption></figure>
+        <figure>
+            <video src="assets/videos/euche.mov" autoplay loop muted playsinline></video>
+            <figcaption>Euchelicerata</figcaption></figure>
+        <figure>
+            <video src="assets/videos/mag.mov" autoplay loop muted playsinline></video>
+            <figcaption>Magnoliopsida</figcaption></figure>
+        <figure>
+            <video src="assets/videos/malacostraca.mov" autoplay loop muted playsinline></video>
+            <figcaption>Malacostraca</figcaption></figure>
+        <figure>
+            <video src="assets/videos/pine.mov" autoplay loop muted playsinline></video>
+            <figcaption>Pinopsida</figcaption></figure>
+        <figure>
+            <video src="assets/videos/predator.mov" autoplay loop muted playsinline></video>
+            <figcaption>Predator</figcaption></figure>
+        <figure>
+            <video src="assets/videos/teleosei.mov" autoplay loop muted playsinline></video>
+            <figcaption>Teleostei</figcaption></figure>
+        <figure>
+            <video src="assets/videos/mammalia.mov" autoplay loop muted playsinline></video>
+            <figcaption>Mammalia</figcaption></figure>
+        <figure>
+            <video src="assets/videos/gas.mov" autoplay loop muted playsinline></video>
+            <figcaption>Gastropoda</figcaption></figure>
+        <figure>
+            <video src="assets/videos/nodata.mov" autoplay loop muted playsinline></video>
+            <figcaption>Other</figcaption></figure>
+    </div>
+
+    <div class="article">
+        <h2>Inspiration</h2>
+        <div class="inspiration-grid">
+            <div class="inspiration-item">
+                <figure><img src="assets/images/birdsong.png" alt="birdsong"></figure>
+                <p><strong>Bird Songs</strong> by Kyle McDonald. This project introduced me to 
+                the UMAP/T-SNE algorithm. I was intrigued by the apparent "boundary lines" within 
+                the bird song grid and wondered what caused them. Clicking or hovering over each 
+                bird triggers an audio clip of its song, which directly inspired the interactive 
+                animations in my project.</p>
+            </div>
+            <div class="inspiration-item">
+                <figure><img src="assets/images/core.png" alt="CoreInspector"></figure>
+                <p><strong>CoreInspector</strong> by Data to Discovery. I love the scale
+                of this project. Though the sense of scale isn't directly reflected in my own
+                project, I believe it is always an intriguing factor to consider in the field
+                of data visualization.</p>
+            </div>
+            <div class="inspiration-item">
+                <figure><img src="assets/images/drum.png" alt="The Infinite Drum Machine"></figure>
+                <p><strong>The Infinite Drum Machine</strong> by Kyle McDonald. I am drawn to how the 
+                core of this project is not visualization, but rather uses visualization to support
+                and enable a separate idea, in this case, an interactive drum machine. I
+                really appreciated the degree of customization this project allows the user.</p>
+            </div>
+            <div class="inspiration-item">
+                <p> I also attended a bird sighting and data visualization workshop taught by 
+                    <strong>Jer Thorp</strong>, who led me to explore avian datasets from the Cornell
+                    Lab of Ornithology and the Avian Diet Database directly.</p>
+            </div>
+        </div>
+
+        
+
+        <h2>Dataset and Visual Layout</h2>
+        <p> The project features 759 birds from the Avian Diet Database, created 
+            by Dr. Allen Hurlbert, Professor of Biology at the University of North 
+            Carolina at Chapel Hill. The raw dataset is a compilation of 73,075 
+            quantitative diet records from different studies for 759 bird species, 
+            primarily from North America. Each species has numerous rows that provide 
+            complexity to the top prey classes. The dataset also includes a number of 
+            variables like bird Region, Observation_Year, Prey_Phylum, Prey_Family, 
+            and Prey_Genus. Since this project is only concerned with bird diet, the 
+            main columns used for this project are:</p>
+        <ul>
+            <li>
+                Common_Name: the common name of each bird species (e.g. Bald Eagle)
+            </li>
+            <li>
+                Prey_Class: the class of preys that makes up a given species's diet 
+                (e.g. Aves, Teleostei)
+            </li>
+            <li>
+                Fraction_Diet: a decimal value between 0 and 1 representing the proportion 
+                of the diet that a given class accounts for
+            </li>
+        </ul>
+        <figure class="img-break">
+            <img src="assets/images/dietvector.png" alt="dietvector">
+            <figcaption>Partial CSV of diet vectors from 63 classes</figcaption>
+        </figure>
+        <p> One of the main challenges of this project was data engineering and developing 
+            the visual layout. Here, I explored dimension reduction algorithms and 
+            rasterization methods to cluster and place birds in a grid. The original dataset 
+            was engineered into a secondary dataset, shown in Figure 2, that includes only the
+            species names and their diet fractions, divided among 63 prey classes (data/diet_vectors.csv).
+            Each class has a decimal between 0 and 1, and together they add up to 1,
+            representing 100% of a species's diet. Because plotting a 63-dimensional vector
+            is impossible on a 2D plane, we use the UMAP algorithm to reduce each vector to 
+            two dimensions before plotting them onto a graph. The result shows how close 
+            each bird is to another based on what they eat.</p>
+
+        <figure class="img-break">
+            <video src="assets/videos/umap.mp4" autoplay loop muted playsinline></video>
+            <figcaption>UMAP scatter plot of 759 bird species by diet similarity</figcaption>
+        </figure>
+
+        <p>The next step after clustering was to move these data points into a format 
+            that's easier to read and understand. The library I used for this is 
+            Rasterfairy. Rasterfairy takes the irregularly scattered 2D point cloud 
+            produced by UMAP and transforms it into a  rectangular grid, assigning 
+            each bird to a unique cell while preserving the relative spatial relationships 
+            between points. The result is a clean, uniformly spaced grid layout where 
+            nearby cells represent birds with similar diets. This makes the overall 
+            composition far more readable than a raw scatter plot, and well-suited for 
+            displaying each bird's diet profile as a small visual unit within a larger mosaic.
+        </p>
+            
+        <figure class="img-break">
+            <video src="assets/videos/umap-grid-translation.mp4" autoplay loop muted playsinline></video>
+            <figcaption>Rasterfairy transforms the UMAP point cloud into a clean rectangular grid</figcaption>
+        </figure>
+
+
+        <h2>Reflections and Future Endeavours</h2>
+        <p> As my first formal data visualization project, this piece taught me a lot.
+            Design, narrative, interaction, and message are all core components of data
+            visualization that comes together to tell something unnoticed before. I felt 
+            like there were countless ways of how this project could have been, and countless
+            ways of how it will go in the future if I continue to work on it. I was able
+            to explore the data at hand, and then form a short story around it, yet I do
+            realize that there are missed opportunities. Context plays a big part of data
+            visualization, it almost certainly shapes what the central question is for a
+            project. For instance, I could have gone deeper into the geography of diet: 
+            how the same species might eat differently across regions, or how climate and
+            habitat shape what's available. The predator arrow feature hints at food web
+            dynamics, but only scratches the surface of what a fuller ecological network
+            might look like. These feel less like failures and more like open doors.
+        </p>
+        <p> What I take away most is that data visualization is an act of translation.
+            The Avian Diet Database existed long before this project, and visualization 
+            gave this data a form that could be felt, not just read. If this project makes 
+            someone pause and wonder what the bird outside their window had for breakfast, 
+            it has done what I hoped it would.
+        </p>
+
+    </div>
+
+    <script src="particles.js"></script>
+    <script>
+        document.addEventListener('click', burstParticles);
+    </script>
+</body>
+</html>

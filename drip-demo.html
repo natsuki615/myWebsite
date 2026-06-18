@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drip Effect Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; }
+        body { overflow: hidden; background: #ffecd1; }
+    </style>
+</head>
+<body>
+<script>
+const NAVY  = [0, 21, 36];
+const CREAM = [255, 236, 209];
+
+// Mirrors the aboutme .backdrop SVG: M0,0 H100 V80 Q50,100 0,80 Z
+// Sides sit at BH*0.8, center dips to BH*0.9
+let BH;
+let drips = [];
+let waveT = 0;
+
+function getEdgeY(x) {
+  let u = x / width;
+  let base = BH * (0.8 + 0.4 * u * (1 - u));
+  // two overlapping sine waves for organic liquid ripple
+  return base
+    + sin(x * 0.014 + waveT) * 20
+    + sin(x * 0.006 - waveT * 0.7) * 6;
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  BH = height * 0.48;
+  spawnDrips();
+}
+
+// Returns x positions of local wave maxima (lowest points on screen = highest Y)
+function wavePeaks() {
+  let peaks = [];
+  let step  = 3;
+  let yPrev = getEdgeY(step);
+  for (let x = step * 2; x < width - step; x += step) {
+    let y     = getEdgeY(x);
+    let yNext = getEdgeY(x + step);
+    if (y >= yPrev && y >= yNext) {
+      if (peaks.length === 0 || x - peaks[peaks.length - 1] > 70) {
+        peaks.push(x);
+      }
+    }
+    yPrev = y;
+  }
+  return peaks.length ? peaks : [width / 3, (2 * width) / 3];
+}
+
+function spawnDrips() {
+  drips = [];
+  let peaks = wavePeaks();
+  // Two drips per peak, staggered, so there's always one building while one falls
+  for (let p of peaks) {
+    drips.push(new Drip(p, random(0,  160)));
+    drips.push(new Drip(p, random(160, 320)));
+  }
+}
+
+function draw() {
+  waveT += 0.018;
+  background(...CREAM);
+  drawBackdrop();
+  noStroke();
+  for (let d of drips) {
+    d.update();
+    d.draw();
+  }
+}
+
+// Navy curved shape — same curve as aboutme .backdrop mask
+function drawBackdrop() {
+  fill(...NAVY);
+  noStroke();
+  beginShape();
+  vertex(0, 0);
+  vertex(width, 0);
+  for (let i = 100; i >= 0; i--) {
+    let x = width * i / 100;
+    vertex(x, getEdgeY(x));
+  }
+  endShape(CLOSE);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  BH = height * 0.48;
+  spawnDrips();
+}
+
+class Drip {
+  constructor(peakX, initialDelay = 0) {
+    this.origX = peakX;
+    this._reset(initialDelay);
+  }
+
+  _reset(delay = 0) {
+    // Pick whichever wave peak is currently lowest on screen
+    let peaks = wavePeaks();
+    this.origX = peaks[floor(random(peaks.length))];
+    this.x       = this.origX + random(-8, 8);
+    this.anchorY = getEdgeY(this.x);
+    this.phase   = 'wait';
+    this.t       = 0;
+    this.waitDur = floor(random(80, 240) + delay);
+    this.maxR    = random(8, 20);
+    this.r       = 0;
+    this.dropY   = this.anchorY;
+    this.neckW   = 0;
+    this.vy      = 0;
+    this.residueR = 0;
+  }
+
+  update() {
+    this.t++;
+    // anchor rides the wave in all phases except free-fall
+    if (this.phase !== 'fall') this.anchorY = getEdgeY(this.x);
+    const ay = this.anchorY;
+
+    if (this.phase === 'wait') {
+      if (this.t >= this.waitDur) { this.phase = 'accumulate'; this.t = 0; }
+
+    } else if (this.phase === 'accumulate') {
+      this.r     = min(this.r + 0.28, this.maxR);
+      this.dropY = ay + this.r;
+      this.neckW = this.r; // wide so blob appears to ooze from edge
+      if (this.r >= this.maxR) { this.phase = 'stretch'; this.t = 0; this.vy = 0.35; }
+
+    } else if (this.phase === 'stretch') {
+      this.vy   += 0.04;
+      this.dropY += this.vy;
+      let ext    = this.dropY - (ay + this.maxR);
+      this.neckW = max(0.5, this.maxR - ext * 0.38);
+      if (this.neckW <= 1.2) {
+        this.phase    = 'fall';
+        this.residueR = this.maxR * 0.4;
+        this.t        = 0;
+      }
+
+    } else if (this.phase === 'fall') {
+      this.vy    += 0.48;
+      this.dropY += this.vy;
+      this.residueR *= 0.91;
+      if (this.dropY - this.maxR > height + 40) this._reset();
+    }
+  }
+
+  draw() {
+    if (this.phase === 'wait') return;
+    noStroke();
+    fill(...NAVY); // navy drips blend into navy backdrop above the curve
+
+    if (this.phase === 'accumulate' || this.phase === 'stretch') {
+      this._drawBody();
+    } else if (this.phase === 'fall') {
+      let e = map(constrain(this.vy, 0, 20), 0, 20, 1, 1.5);
+      ellipse(this.x, this.dropY, this.maxR * 2, this.maxR * 2 * e);
+      if (this.residueR > 0.8) {
+        ellipse(this.x, this.anchorY + this.residueR * 0.5,
+                this.residueR * 2, this.residueR * 1.6);
+      }
+    }
+  }
+
+  _drawBody() {
+    let ax   = this.x;
+    let ay   = this.anchorY;
+    // Root starts above the visible edge — buried in the navy area, so no seam
+    let topY = ay - this.r * 0.4;
+    let dy   = this.dropY;
+    let r    = this.r;
+    let hw   = this.neckW / 2;
+    let ctrl = topY + (dy - topY) * 0.28;
+
+    beginShape();
+    vertex(ax - hw, topY);
+    bezierVertex(ax - hw, ctrl,  ax - r, dy - r * 0.45, ax - r, dy);
+    bezierVertex(ax - r,  dy + r * 0.93, ax + r, dy + r * 0.93, ax + r, dy);
+    bezierVertex(ax + r,  dy - r * 0.45, ax + hw, ctrl,  ax + hw, topY);
+    endShape(CLOSE);
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>car's projects</title>
+        <link rel="stylesheet" href="styles.css">
+        
+        <style>
+            .projects {
+                display: block;
+                position: relative;
+                overflow: visible;
+                text-align: left;
+                height: auto;
+                margin-bottom: 40vh;
+            }
+            .projects btn {
+                position: relative;
+                text-align: left;
+                border: none;
+                padding: 1vw;
+                background: rgba(238, 219, 255, 0.8);
+                color: #001524;
+                font-size: 2vw;
+                font-weight: normal;
+                font-family: 'Quicksand', variable;
+                display: block;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .projects btn:hover {
+                font-weight: bold;
+                height: 30vh;
+                color: #ffd519;
+                background: rgba(172, 153, 189, 0.8);
+            }
+            .projects btn .projects-desc {
+                color: #ffd519;
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: auto;
+                max-width: 55%;
+                height: 100%;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 2;
+                pointer-events: none;
+                text-align: left;
+                margin-left: 40%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .projects btn:hover .projects-desc {
+                opacity: 1;
+            }
+
+            .gallery btn {
+                margin: 1vw;
+            }
+            .gallery img {
+                width: 30vw;
+                height: 24vw;
+                border-radius: 10px;
+                object-fit: cover;
+            }
+            .gallery .hover-text {
+                width: 90%;
+                top: 50%; 
+                transform: translate(-50%, -50%);
+            }
+            .gallery .hover-text > .title{
+                font-size: 2vw;
+            }
+            .gallery .hover-text .main{
+                font-size: 1.2vw;
+            }
+            .gallery btn:hover img {
+                filter: brightness(0.4);
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="banner"></div>
+        <header>
+            <nav class="links">
+                <a href="index.html" class="home">home</a>
+                <a href="aboutme.html" class="home">my person</a>
+                <a href="art.html" class="home">my art</a>
+                <a href="projects.html" class="home">my projects</a>
+                <a href="contact.html" class="home">my contact</a>
+            </nav>
+        </header>
+
+        <div class="gallery" style="margin-top:5vh;">
+            <btn id="tooth">
+                <img src="assets/images/tooth.png">
+                <div class="hover-text">
+                    <div class="title">
+                        By Tooth And Beak
+                    </div>
+                    <div class="main">
+                        Interactive visualization of bird diet using UMAP dimension-reduction
+                        and grid projection(rasterization). Hovering and clicking every bird 
+                        speicies triggers animations and a description panel.
+                    </div>
+                </div>
+            </btn>
+
+            <btn id="asl">
+                <img src="assets/images/asl.png">
+                <div class="hover-text">
+                    <div class="title">
+                        Bubbly
+                    </div>
+                    <div class="main">
+                        Real-time body tracking that identifies and classifies ASL alphabet
+                        gestures. Made using TensorFlow.js and p5.js, this program paints 
+                        the letters detected with a bubbly effect. Click to see a demo video. 
+                    </div>
+                </div>
+            </btn>
+
+            <btn id="chomp">
+                <img src="assets/images/chomp.png">
+                <div class="hover-text">
+                    <div class="title">
+                        chomp chomp!
+                    </div>
+                    <div class="main">
+                        Dive into the wacky underwater brawl of Chomp Chomp!, 
+                        a fast-paced, hand-tracking VR game where your own hands 
+                        become fish puppets! Using hand-tracking technology and 
+                        developed in OpenProcessing, players control fish-shaped 
+                        puppets that snap their jaws shut with a simple movement. 
+                        Moreover, explore other features and appearances of the 
+                        fish by moving your fingers. The goal? Chomp your opponent 
+                        before they chomp you! Click to launch it on itch.io.
+                    </div>
+                </div>
+                
+            </btn>
+            <btn id="ac">
+                <img src="assets/images/ac.png">
+                <div class="hover-text">
+                    <div class="title">
+                        Agaric’s Curse
+                    </div>
+                    <div class="main">
+                        A 2D single-player adventure game where 
+                        the player navigates a hallucinatory cave to find the exit. 
+                        Along the way, the player will encounter several flying monsters 
+                        trying to stop the player from escaping and to kill them—so 
+                        that the monsters can consume the player for energy.
+                    </div>
+                </div>
+            </btn>
+
+            <btn id="weather">
+                <img src="assets/images/weather-mainpage.png">
+                <div class="hover-text">
+                    <div class="title">
+                        the weather within me
+                    </div>
+                    <div class="main">
+                        A wallpaper that changes dynamically based on the weather of 
+                        your current location. 
+                        * Using this wallpaper or entering the website requires access to your
+                        device's location. If access for the Geolocation API isn't granted, 
+                        the program opts to use the device's IP address. 
+                    </div>
+                </div>
+            </btn>
+
+            <btn id="tdp">
+                <img src="assets/images/tdp.png">
+                <div class="hover-text">
+                    <div class="title">
+                        The Drawing Plan (Coming Soon)
+                    </div>
+                    <div class="main">
+                        Using the psychological concept of art therapy, The Drawing Plan
+                        aims to help neurodivergent children express their inner emotions 
+                        and feelings using art.
+                    </div>
+                </div>
+            </btn>
+        </div>
+
+        <div class="bottom-banner" id="contactBanner">
+            <div class="container">
+                <img src="assets/images/pfp.jpg" style="object-fit:cover; border-radius:50%; 
+                border:2px solid #ffecd1; width:8vw;">
+                <span>carinazheng949 at gmail dot com</span>
+                <span>
+                    <button id="contactPage" style="background:#8fd4d1; font-size: 1vw; border-radius: 40px; 
+                    font-weight:bold; width: 10vw;">Contact Me</button>
+                </span>
+            </div>
+        </div>
+
+        <!-- <div class="content">
+            <div class="content-body">
+                <h1 style="text-align: left; font-family: 'Quicksand', variable;">Ctrl + Alt + Create</h1>
+                <p style="text-align: left; font-weight: normal; font-size: 1.5vw; font-family: 'Quicksand', variable;">
+                    a bunch of silly things to make life a bit happier
+                </p>
+                
+                <div class="projects">
+                    <btn id="chomp">chomp chomp!
+                        <div class="projects-desc">
+                            <p style="font-size:max(1.2vw,2vh); font-weight:normal; ">
+                                Dive into the wacky underwater brawl of Chomp Chomp!, 
+                                a fast-paced, hand-tracking VR game where your own hands 
+                                become fish puppets! Using hand-tracking technology and 
+                                developed in OpenProcessing, players control fish-shaped 
+                                puppets that snap their jaws shut with a simple movement. 
+                                Moreover, explore other features and appearances of the 
+                                fish by moving your fingers. The goal? Chomp your opponent 
+                                before they chomp you! Click to launch it on itch.io.</p>
+                        </div>
+                    </btn>
+                    <btn id="agaric">Agaric's Curse
+                        <div class="projects-desc">
+                            <p style="font-size:max(1.2vw,2vh); font-weight:normal;">
+                                Agaric’s Curse is a 2D single-player adventure game where 
+                                the player navigates a hallucinatory cave to find the exit. 
+                                Along the way, the player will encounter several flying monsters 
+                                trying to stop the player from escaping and to kill them—so 
+                                that the monsters can consume the player for energy. </p>
+                        </div>
+                    </btn>
+                    
+                    <btn id="draw">Ponder (coming soon)
+                        <div class="projects-desc">
+                            <p style="font-size:max(1.2vw,2vh); font-weight:normal;">
+                                Ponder explores and assesses AI’s understanding on human emotional 
+                                and psychological activities. This research is done with an original 
+                                software: an interactive widget that collects real-time user input 
+                                and transforms it into retrieval database art, such as illustrations, 
+                                sculptures, and immersive media, using algorithms. 
+                                Each day, it refreshes with a new prompt, and the user is encouraged 
+                                to share their responses. This tool initiates meaningful conversations, 
+                                combining meditative journaling with the collective experience of 
+                                social media. Long-term, we plan to implement natural language processing 
+                                for word recognition, sentiment analysis, and emotional classification 
+                                to interpret responses. Every submission will be processed using 
+                                speech-to-text transcription and mood detection algorithms. </p>
+                        </div>
+                    </btn>
+
+                    <btn id="draw">The Drawing Plan (coming soon)
+                        <div class="projects-desc">
+                            <p style="font-size:max(1.2vw,2vh); font-weight:normal;">
+                                Using the psychological concept of art therapy, The Drawing Plan
+                                aims to help neurodivergent children express their inner emotions 
+                                and feelings.
+                            </p>
+                        </div>
+                    </btn>
+                </div>
+ -->
+
+            <div class="bottom-banner" id="contactBanner">
+                <div class="container">
+                    <img src="assets/images/pfp.jpg" style="object-fit:cover; border-radius:50%; 
+                    border:2px solid #ffecd1; width:8vw;">
+                    <span>carinazheng949@gmail.com</span>
+                    <span>
+                        <button id="contactPage" style="background:#8fd4d1; font-size: 1vw; border-radius: 40px; 
+                        font-weight:bold; width: 10vw;">Contact Me</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+    
+    <!-- <script src="cursorGrad.js"></script> -->
+    <script src="particles.js"></script>
+    <script>
+        document.addEventListener('click', burstParticles);
+        document.getElementById('tooth').addEventListener('click', function() {
+            window.open('by-tooth-and-beak.html', '_blank'); //_blank opens in a new tab
+        });
+        document.getElementById('asl').addEventListener('click', function() {
+            window.open('bubbly.html', '_blank'); //_blank opens in a new tab
+        });
+        document.getElementById('chomp').addEventListener('click', function() {
+            window.open('https://cacca-z.itch.io/chomp-chomp', '_blank'); //_blank opens in a new tab
+        });
+        document.getElementById('ac').addEventListener('click', function() {
+            window.open('https://youtu.be/sbLKX7bQpFE', '_blank'); //_blank opens in a new tab
+        });
+        document.getElementById('weather').addEventListener('click', function() {
+            window.open('https://theweatherwithinme.netlify.app/', '_blank'); //_blank opens in a new tab
+        });
+        document.getElementById('tdp').addEventListener('click', function() {
+            window.open('https://www.youtube.com/watch?v=6bwOM11oO-U', '_blank'); //_blank opens in a new tab
+        });
+
+        document.getElementById('contactPage').addEventListener('click', function() {
+            window.open('contact.html', '_self'); //_self opens in the same tab
+        });
+        window.addEventListener('scroll', function() {
+            const banner = document.getElementById("contactBanner");
+            const wHeight = window.innerHeight;
+            const sHeight = window.scrollY;
+            const dHeight = document.body.scrollHeight;
+
+            if (wHeight + sHeight >= dHeight - 100){
+                banner.style.bottom = '0';
+            }
+            else{
+                banner.style.bottom = '-25vh';
+            }
+        });
+
+        // function openWindow() {}
+    </script>
+
+    </body>
+</html>

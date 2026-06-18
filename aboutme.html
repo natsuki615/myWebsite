@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Who's Carina??</title>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            body {
+                transition: background-color 0.3s ease-out;
+                position: relative;
+                z-index: 1;
+                background: #ffecd1;
+            }
+
+            p {
+                display: block;
+                font-size: 1.4vw;
+                width: 45vw;
+                justify-content: center;
+                text-align: left;
+            }
+
+            /* puts text and image side by side */
+            .about-flex { 
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+            }
+            .about-text {
+                flex: 1 1 0;
+                width: 50vw;
+                flex-direction: column;
+                margin-top: 2vw;
+                margin-left: 3vw;
+            }
+            .about-images {
+                width: 25vw;
+                display: flex;
+                align-items: center;
+                position: relative;
+                top: 6vw;
+                left: 0;
+            }
+            .vertical-oval {
+                width: 27vw;
+                height: 40vw;
+                top: 0px; left: 0px;
+                object-fit: cover;
+                border-radius: 50% / 30%;
+                display: block;
+                margin-left: -8vw;
+                transform: translateY(calc(var(--scroll) * 0.3px));
+            }
+
+            /* Education and Experience Box */
+            .edu-exp-box {
+                position: relative; 
+                width: 54vw;
+                height: auto;
+                border-radius: 10% / 18%;
+                background: #15616d;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2vw 2vw;
+                box-sizing: border-box;
+                position: relative;
+                z-index: 10;
+                transform: translateY(calc(var(--scroll) * 0.2px));
+                overflow: hidden;
+            }
+            .edu-exp-box h1 {
+                width: 100%;
+                font-size: 2vw;
+                text-align: left;
+                color: #ffd519;
+            }
+            .edu-exp-box h2 {
+                width: 100%;
+                font-size: 1.5vw;
+                text-align: left;
+                color: #ffecd1;
+            }
+            .edu-exp-box p {
+                width: 100%;
+                font-size: 1.3vw;
+                text-align: left;
+                color: #ffecd1;
+                margin: auto;
+            }
+            .edu-exp-box .card {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+                padding: 0vw 1.5vw;
+                box-sizing: border-box;
+                margin-top: 0;
+                display: flex;
+                align-items: flex-start;
+                gap: 2vw;
+            }
+            .edu-exp-box .card + .card {
+                margin-top: 1vw;
+            }
+            .edu-exp-box .card-label {
+                flex-shrink: 0;
+                margin-top: -0.5vw;
+            }
+            .edu-exp-box .card-detail {
+                display: flex;
+                flex-direction: column;
+                gap: 0.2vw;
+                text-align: left;
+            }
+
+            /* skills box */
+            .skills-box {
+                position: relative;
+                width: 34vw;
+                height: auto;
+                border-radius: 15% / 23%;
+                background: #78290f;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                padding: 1vw 1.5vw;
+                box-sizing: border-box;
+                position: relative;
+                z-index: 10;
+                transform: translateY(calc(var(--scroll) * 0.2px));
+                overflow: hidden;
+            }
+            .skills-box h1 {
+                width: 100%;
+                font-size: 2vw;
+                text-align: left;
+                color: #ffd519;
+            }
+            .skills-box h2 {
+                width: 100%;
+                font-size: 1.5vw;
+                text-align: left;
+                color: #ffecd1;
+            }
+            .skills-box p {
+                width: 100%;
+                font-size: 1.2vw;
+                text-align: left;
+                color: #ffecd1;
+            }
+            .skills-box .card {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+                padding: 0vw 1vw;
+                box-sizing: border-box;
+                display: flex;
+                align-items: center;
+                gap: 2vw;
+            }
+            .skills-box .card-label {
+                flex-shrink: 0;
+            }
+            .skills-box .card-detail {
+                display: flex;
+                flex-direction: column;
+                gap: 0.2vw;
+                margin-left: auto;
+                text-align: left;
+            }
+
+            button {
+                display: inline-block;
+                background: none;
+                border: none;
+                padding: 1vw;
+                border-radius: 10px;
+                transition: background 0.3s;
+                margin-left: 0.5vw;
+                margin-right: 0.5vw;
+                font-size: 2vw;
+                color: #001524;
+                margin-top: 1.5vw;
+                max-width: 16vw;
+                z-index: 0;
+                position: relative;
+            }
+            button:hover {
+                transform: scale(1.1);
+                background: rgba(112, 45, 194, 0.2);
+            }
+
+            button span {
+                display: block; 
+                font-size: 1vw; 
+                font-weight: normal; 
+                width: 100%; 
+            }
+
+            .skills-col {
+                width: 34vw;
+                display: flex;
+                flex-direction: column;
+                margin-left: 1vw;
+            }
+            .skill-capsules {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.4vw;
+                margin-bottom: 2vw;
+            }
+            .capsule {
+                background: #001524;
+                color: #ffecd1;
+                font-family: "Quicksand", sans-serif;
+                font-size: 1.2vw;
+                padding: 0.2vw 0.8vw;
+                border-radius: 999px;
+                /* border: 1px solid rgba(255, 236, 209, 0.35); */
+                white-space: nowrap;
+            }
+
+            /* hobby */
+            .hobby-row {
+                background: #001524;
+                width: 100%;
+                box-sizing: border-box;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                gap: 1.5vw;
+                padding: 2vw 3vw 4vw;
+                margin-top: -15vw;
+                position: relative;
+                z-index: 2;
+            }
+            .hobby-title {
+                width: 100%;
+                color: #ffd519;
+                font-size: 2.5vw;
+                margin-top: -12vw;
+                padding-top: 1vw;
+                text-align: left;
+            }
+            .hobby-map-hero {
+                flex: 3;
+                min-width: 0;
+                border-radius: 16px;
+                overflow: hidden;
+                background-color: rgba(21, 97, 109, 0.5);
+                padding: 1vw;
+                margin-top: -7vw;
+            }
+            .hobby-panels {
+                flex: 1;
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 1vw;
+                margin-top: -7vw;
+                overflow: hidden;
+            }
+            .hobby-stats-row {
+                flex-shrink: 0;
+                display: flex;
+                gap: 1vw;
+            }
+            .hobby-stat-box {
+                flex: 1;
+                background: #ffecd1;
+                border-radius: 16px;
+                padding: 1.2vw 0.8vw;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 0.3vw;
+            }
+            .stat-num {
+                font-size: 6vw;
+                font-weight: bold;
+                color: #ff7d00;
+                font-family: "Quicksand", sans-serif;
+                line-height: 1;
+                display: block;
+            }
+            .stat-label {
+                font-size: 0.85vw;
+                font-weight: bold;
+                color: #001524;
+                font-family: "Quicksand", sans-serif;
+                line-height: 1.3;
+                display: block;
+            }
+            .hobby-middle {
+                flex-shrink: 0;
+                background: #ffecd1;
+                border-radius: 16px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 1vw;
+                padding: 1vw;
+            }
+            .hobby-middle-label {
+                font-family: "Quicksand", sans-serif;
+                font-size: 0.85vw;
+                color: #001524;
+                font-weight: bold;
+                white-space: nowrap;
+            }
+            .hobby-vinyls {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8vw;
+            }
+            .hobby-vinyls img {
+                width: 5.5vw;
+                height: 5.5vw;
+                border-radius: 50%;
+                border: 0.2vw solid #001524;
+                cursor: pointer;
+                animation: spin-vinyl 6s linear infinite;
+                animation-play-state: paused;
+            }
+            .hobby-vinyls img:hover { animation-play-state: running; }
+            @keyframes spin-vinyl {
+                from { transform: rotate(0deg); }
+                to   { transform: rotate(360deg); }
+            }
+            .hobby-wordcloud {
+                flex: 1;
+                min-height: 0;
+                background: #ffecd1;
+                border-radius: 16px;
+                overflow: hidden;
+                position: relative;
+            }
+            #cloud-area {
+                position: absolute;
+                inset: 1vw;
+            }
+            #cloud-area svg {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            .backdrop-flip {
+                display: block;
+                width: 100%;
+                height: 36vw;
+                background: #001524;
+                -webkit-mask-image: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 Q50,0 100,20 V100 H0 Z" fill="white"/></svg>');
+                mask-image: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 Q50,0 100,20 V100 H0 Z" fill="white"/></svg>');
+                -webkit-mask-size: 100% 100%;
+                mask-size: 100% 100%;
+                margin-top: -5vw;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="banner"></div>
+        <header>
+            <nav class="links">
+                <a href="index.html" class="home">home</a>
+                <a href="aboutme.html" class="home">my person</a>
+                <a href="art.html" class="home">my art</a>
+                <a href="projects.html" class="home">my projects</a>
+                <a href="contact.html" class="home">my contact</a>
+            </nav>
+        </header>
+        <div class="content">
+            <div class="backdrop-container"></div>
+            <div class="backdrop"></div>
+
+            <div class="content-body">
+                <div class="about-flex">
+                    <div class="about-text">
+                        <h1 style="text-align: left;">
+                            <span style="font-weight: normal; font-size: 4.5vw;">Hello, I'm </span>
+                            <span>Carina!</span>
+                        </h1>
+                        <p>
+                            A developer and artist with a passion for interactive media. My work
+                            spans across data, software, and computational art. I am drawn to systems
+                            that inform nature and humanity, about the way society functions or natural
+                            rhythms of the universe. My passion lies in making complex information more 
+                            accessible and understandable, and creating art that gives the public a new 
+                            way to see something worth knowing, such as people, systems, and the world we share.
+                            </p>
+
+                    </div>
+                    <div class="about-images">
+                        <img src="assets/images/pfp.jpg" class="vertical-oval" alt="garden">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- for horizonal layout -->
+        <div style="display: flex; align-items: flex-start; gap: 2vw; 
+                    padding: 0 5vw; margin-top: 8vw; margin-bottom: 8vw;">
+
+        <div class="edu-exp-box">
+            <!-- <svg id="connectorSvg" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; z-index:0;"></svg> -->
+            <div class="card">
+                <div class="card-label"><h1>Education</h1></div>
+                <div class="card-detail" style="margin-left: 1vw;">
+                    <!-- for spacing -->
+                    <h2>Carnegie Mellon University</h2>
+                    <p>Bachelor of Computer Science and Art, 2028</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-label"><h1>Experience</h1></div>
+                <div class="card-detail">
+                    <h2>NASA Jet Propulsion Laboratory</h2>
+                    <p>Computer Science Lead Intern, 2026</p>
+
+                    <h2>Carnegie Mellon University</h2>
+                    <p>Data Visualization Intern, 2026</p>
+                    <p>Automation Engineer, 2025-present</p>
+                    <p>Data Research Assistant, 2025-present</p>
+
+                    <h2>Spring Carnival Committee</h2>
+                    <p>Head of Software, 2025-present</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="skills-col">
+            <div class="skill-capsules">
+                <span class="capsule">Data Visualization</span>
+                <span class="capsule">ETL</span>
+                <span class="capsule">Creative Coding</span>
+                <span class="capsule">Software Development</span>
+                <span class="capsule">Machine Learning</span>
+            </div>
+            <div class="skills-box">
+                <div class="card">
+                    <div class="card-label"><h1>Skills</h1></div>
+                    <div class="card-detail">
+                        <h2>Programming Languages</h2>
+                        <img src="assets/images/code-apps.png" alt="Coding languages" style="width: 100%; display: block; margin-top: 0.5vw;">
+
+                        <h2>Design and Art</h2>
+                        <img src="assets/images/design-apps.png" alt="Design apps" style="width: 90%; display: block; margin-top: 0.5vw;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="backdrop-flip"></div>
+
+        <div class="hobby-row">
+
+            <h2 class="hobby-title">Every Road I've Taken</h2>
+
+            <div class="hobby-map-hero">
+                <div id="national-parks-map" style="display:block; border-radius:16px; overflow:hidden;"></div>
+            </div>
+
+            <div class="hobby-panels">
+                <div class="hobby-stats-row">
+                    <div class="hobby-stat-box">
+                        <span class="stat-num">13</span>
+                        <span class="stat-label">national parks visited</span>
+                    </div>
+                    <div class="hobby-stat-box">
+                        <span class="stat-num">16</span>
+                        <span class="stat-label">states visited</span>
+                    </div>
+                </div>
+
+                <div class="hobby-wordcloud" id="artist-cloud">
+                    <div id="cloud-area"></div>
+                </div>
+
+                <div class="hobby-middle">
+                    <span class="hobby-middle-label">Playlists by Season</span>
+                    <div class="hobby-vinyls">
+                        <img id="spring" src="assets/images/spring.png" alt="Spring">
+                        <img id="summer" src="assets/images/summer.png" alt="Summer">
+                        <img id="autumn" src="assets/images/fall.png" alt="Fall">
+                        <img id="winter" src="assets/images/winter.png" alt="Winter">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        
+
+        <!-- <div class="bottom-banner" id="contactBanner" style="bottom: -50vh; opacity: 1; background: none;">
+            <div class="container" style="position: relative;">
+                <span style="display: flex; position: absolute; align-items: flex-start; gap: 20px;">
+                    <img src="assets/images/pov.png" style="width: 100%; display: block;">
+                    <div style="position: absolute; 
+                            top: 25%; 
+                            right: 10%; 
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;">
+                        <img src="assets/images/pfp.jpg" style="width: 5vw; height: 5vw; 
+                                  border-radius: 50%; margin-bottom: 1vh;">
+                        <span style="color: #ffecd1;">carinazheng949 at gmail dot com</span>
+                        <button id="contactPage" style="background:#8fd4d1; font-size: 1vw; border-radius: 40px; 
+                                                        font-weight:bold; width: 10vw;">Contact Me</button>
+                    </div>
+                </span>
+            </div>
+        </div> -->
+
+        <!-- <script src="cursorGrad.js"></script> -->
+        <script src="particles.js"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="https://unpkg.com/topojson-client@3"></script>
+        <script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.7/build/d3.layout.cloud.min.js"></script>
+        <script src="national-parks-map.js"></script>
+        <script>
+            document.addEventListener('click', burstParticles);
+
+            function drawConnectors() {
+                const svg = document.getElementById('connectorSvg');
+                if (!svg) return;
+                svg.innerHTML = '';
+                const cRect = svg.parentElement.getBoundingClientRect();
+
+                document.querySelectorAll('.edu-exp-box .card').forEach(card => {
+                    const label = card.querySelector('.card-label h1');
+                    const targets = card.querySelectorAll('.card-detail h2');
+                    if (!label || !targets.length) return;
+
+                    const lRect = label.getBoundingClientRect();
+                    const sx = lRect.right - cRect.left + 10;
+                    const sy = lRect.top + lRect.height / 2 - cRect.top;
+
+                    targets.forEach(target => {
+                        const tRect = target.getBoundingClientRect();
+                        const ex = tRect.left - cRect.left - 10;
+                        const ey = tRect.top + tRect.height / 2 - cRect.top;
+                        const mx = sx + (ex - sx) * 0.5;
+
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        path.setAttribute('d', `M ${sx} ${sy} C ${mx} ${sy}, ${mx} ${ey}, ${ex} ${ey}`);
+                        path.setAttribute('stroke', 'rgba(255, 213, 25)');
+                        path.setAttribute('stroke-width', '1.5');
+                        path.setAttribute('fill', 'none');
+                        svg.appendChild(path);
+                    });
+                });
+            }
+            window.addEventListener('load', drawConnectors);
+            window.addEventListener('resize', drawConnectors);
+            document.getElementById('spring').addEventListener('click', function() {
+                window.open('https://open.spotify.com/playlist/41QWHcOkcjmPpyuvDN4Mpc?si=BSE2PIA8Tui_qLn738b9Aw', '_blank'); //_blank opens in a new tab
+            });
+            document.getElementById('summer').addEventListener('click', function() {
+                window.open('https://open.spotify.com/playlist/2zWedkFeKaQv4YWTlnjoiB?si=Z1AjxyoqR-a9OcqBHBtbVQ', '_blank'); 
+            });
+            document.getElementById('autumn').addEventListener('click', function() {
+                window.open('https://open.spotify.com/playlist/4nvyCQl6M3nwqyDdB5gQHV?si=KPCXbPbXRCOF3PU3gwuvAw', '_blank'); 
+            });
+            document.getElementById('winter').addEventListener('click', function() {
+                window.open('https://open.spotify.com/playlist/14MTa8n6W0FjCKm1A5jiZE?si=UMmV5RoGQza1GrkeqlAUfg', '_blank'); 
+            });
+
+            const ARTISTS = [
+                { name: "Hozier", freq: 4, songs: ["In A Week", "Would That I", "Eat Your Young"] },
+                { name: "Laufey", freq: 4.5, songs: ["From the Start", "Bored", "Falling Behind"] },
+                { name: "Elio Mei", freq: 5, songs: ["Never The Muse", "What's Going On?", "The Milk Carton"] },
+                { name: "Paris Paloma", freq: 3.5, songs: ["Labour", "knitting song", "village song"] },
+                { name: "Willowbrook", freq: 2,songs: ["Campfire God Song", "Walk With Me"] },
+                { name: "Wasia Project", freq: 2, songs: ["Petals on the Moon", "Used To Love"] },
+                { name: "Lizzy Hilliard", freq: 0.5, songs: ["if you were a worm"] },
+                { name: "AURORA", freq: 2, songs: ["Queendom", "Through the Eyes of a Child"] },
+                { name: "Alice Phoebe Lou", freq: 2.5, songs: ["Open My Door", "Witches", "Nostalgia"] },
+                { name: "Luna Li", freq: 2, songs: ["Afterglow", "Misery Moon"] },
+                { name: "Taylor Swift", freq: 2, songs: ["Timeless", "ivy", "seven"] },
+                { name: "Fine Food Market", freq: 1.5, songs: ["Sterile Butterfly", "Wild World"] },
+                { name: "Clairo", freq: 1, songs: ["Close To You", "Add Up My Love"] },
+                { name: "Amelia Day", freq: 0.5, songs: ["When You Let Down Your Hair"] },
+                { name: "Lizzy McAlpine", freq: 1, songs: ["All Falls Down"] },
+                { name: "Florence + The Machine", freq: 0.8, songs: ["Cassandra"] },
+                { name: "Men I Trust", freq: 0.3, songs: ["Seven"] },
+                { name: "Wes Reeve", freq: 2.5, songs: ["Never Ending Summer"] },
+                { name: "Noah Kahan", freq: 3.5, songs: ["Everything, Everywhere", "New Perspective"] },
+                { name: "girl in red", freq: 1.2, songs: ["October Passed Me By"] },
+                { name: "Mandy Moore", freq: 1.5, songs: ["When Will My Life Begin?"] },
+                { name: "Joe Hisaishi", freq: 2.2, songs: [] },
+                { name: "Cigarettes After Sex", freq: 1.8, songs: [""] },
+                { name: "Lauryn Marie", freq: 1.5, songs: [""] },
+                { name: "ROLE MODEL", freq: 2.1, songs: [""] },
+            ];
+
+            (function buildArtistCloud() {
+                const outer = document.getElementById('artist-cloud');
+                const cloudArea = document.getElementById('cloud-area');
+                if (!outer || !cloudArea) return;
+
+                const PALETTE = ['#001524', '#ff7d00', '#ffd519', '#15616d', '#78290f'];
+                const maxF    = Math.max(...ARTISTS.map(a => a.freq));
+
+                // tooltip lives on the outer box so it can overflow cloud-area
+                const tip = document.createElement('div');
+                tip.style.cssText = 'position:absolute;background:#001524;color:#ffecd1;padding:4px 10px;border-radius:8px;font-size:12px;font-family:Quicksand,sans-serif;pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:100;white-space:nowrap;';
+                outer.appendChild(tip);
+
+                function render(W, H) {
+                    cloudArea.innerHTML = '';
+                    const minPx = W * 0.03;
+                    const maxPx = W * 0.09;
+
+                    const words = ARTISTS.map((a, i) => ({
+                        text: a.name,
+                        freq: a.freq,
+                        songs: a.songs,
+                        size: minPx + (a.freq / maxF) * (maxPx - minPx),
+                        color: PALETTE[i % PALETTE.length],
+                    }));
+
+                    d3.layout.cloud()
+                        .size([W, H])
+                        .words(words)
+                        .padding(3)
+                        .rotate(0)
+                        .font('Quicksand')
+                        .fontSize(d => d.size)
+                        .on('end', function(placed) {
+                            d3.select(cloudArea)
+                                .append('svg')
+                                .attr('width', W).attr('height', H)
+                                .append('g')
+                                .attr('transform', `translate(${W / 2},${H / 2})`)
+                                .selectAll('text')
+                                .data(placed)
+                                .join('text')
+                                .style('font-family', 'Quicksand, sans-serif')
+                                .style('font-weight', 'bold')
+                                .style('font-size', d => `${d.size}px`)
+                                .style('fill', d => d.color)
+                                .style('cursor', 'default')
+                                .attr('text-anchor', 'middle')
+                                .attr('transform', d => `translate(${d.x},${d.y})`)
+                                .text(d => d.text)
+                                .on('mouseenter', function(event, d) {
+                                    d3.select(this).style('opacity', '0.65');
+                                    tip.textContent = d.songs.join(' · ');
+                                    tip.style.opacity = '1';
+                                })
+                                .on('mousemove', function(event) {
+                                    const rect = outer.getBoundingClientRect();
+                                    tip.style.left = (event.clientX - rect.left + 12) + 'px';
+                                    tip.style.top  = (event.clientY - rect.top  - 34) + 'px';
+                                })
+                                .on('mouseleave', function() {
+                                    d3.select(this).style('opacity', '1');
+                                    tip.style.opacity = '0';
+                                });
+                        })
+                        .start();
+                }
+
+                let debounce;
+                const ro = new ResizeObserver(entries => {
+                    const { width: W, height: H } = entries[0].contentRect;
+                    if (W < 10 || H < 10) return;
+                    clearTimeout(debounce);
+                    debounce = setTimeout(() => render(W, H), 120);
+                });
+                ro.observe(cloudArea);
+            })();
+
+            // keep panels column the same height as the map hero
+            function syncPanelsHeight() {
+                const hero   = document.querySelector('.hobby-map-hero');
+                const panels = document.querySelector('.hobby-panels');
+                if (!hero || !panels) return;
+                panels.style.height = hero.offsetHeight + 'px';
+            }
+            window.addEventListener('load', syncPanelsHeight);
+            window.addEventListener('resize', syncPanelsHeight);
+
+        </script>
+
+
+    </body> 
+</html>

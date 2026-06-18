@@ -1,0 +1,288 @@
+<!DOCTYPE>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>car's contact</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://use.typekit.net/oat6usi.css">
+        <link rel="stylesheet" href="https://use.typekit.net/oat6usi.css">
+
+        <style>
+            .container {
+                display: flex;
+                justify-content: center; 
+                height: 100vh;
+                width: 100%;
+                margin-top: 5vh;
+                color: #cccccc;
+            }
+            .command-prompt {
+                display: flex;
+                position: relative;
+                width: 75%;
+                height: 80vh;
+                border-radius: 8px;
+                border: #333333 1px solid;
+                overflow: hidden;
+                background: #0c0c0c;
+                color: #cccccc;
+                font-size: 1.2vw;
+                padding: 20px;
+                font-family: "consolas", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+            .command-prompt .banner {
+                display: flex;
+                flex-direction: row;
+                align-items:flex-end;
+                justify-content: flex-start;
+                width: 100%;
+                height: 6vh;
+                background: #333333;
+                border-radius: 8px 8px 0 0;
+                top: 0;
+                left: 0;
+                z-index: 0;
+            }
+            .command-prompt .banner .tab {
+                width: 21%;
+                height: 75%; 
+                background: #0c0c0c; 
+                border-radius: 8px 8px 0 0; 
+                display: flex;
+                margin-left: 1.2vh;
+                
+            }
+            .command-prompt .banner p{
+                text-align: left;
+                margin-left: 2vh;
+            }
+            .command-prompt .banner button {
+                margin-left: 1vh;
+                background: none;
+                color: #fff;
+                border: none;
+                border-radius: 6px 0 0 6px;
+                font-size: 1.7em;
+                width: 1em;
+                height: 1em;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .command-prompt .banner button:hover {
+                background: #444;
+            }
+            .command-prompt .command-prompt-content p {
+                font-size: 17px; 
+                color:#cccccc;
+                display: block;
+                z-index: 1;
+                text-align: left;
+                line-height: 0.2;
+            }
+            .command-prompt .command-prompt-content {
+                position: relative;
+                height: 100%;
+                overflow-y: auto;
+                top: 5vh;
+                left: -0.5vw;
+            }
+
+            .blink {
+                animation: blink 1s steps(1) infinite;
+            }
+            @keyframes blink {
+                0%, 50% {opacity: 1;}
+                51%, 100% {opacity: 0;}
+            }
+        </style>
+    </head>
+    <body>
+        <div class="banner"></div>
+        <header>
+            <nav class="links">
+                <a href="index.html" class="home">home</a>
+                <a href="aboutme.html" class="home">my person</a>
+                <a href="art.html" class="home">my art</a>
+                <a href="projects.html" class="home">my projects</a>
+                <a href="contact.html" class="home">my contact</a>
+            </nav>
+        </header>
+
+        <div class="content" style="padding: 30px;">
+            <div class="container">
+                <div class="command-prompt">
+                    <div class="banner">
+                        <div class="tab">
+                            <p style="font-size:1vw; color:#fff; 
+                                        font-family: 'segoe-ui', sans-serif;
+                                        font-weight: 600;">Command Prompt</p>
+                        </div>
+                    </div>
+                    <div class="command-prompt-content">
+                        <form id="contact-form" style="display: none;">
+                            <input type="text" name="subject" id="hiddenSubject">
+                            <input type="text" name="email" id="hiddenEmail">
+                            <input type="text" name="name" id="hiddenName">
+                            <textarea name="message" id="hiddenMessage"></textarea>
+                        </form>
+
+                        <p>Contact Me [Version 10.0.26100.4061]</p>
+                        <p>(c) Carina Zheng. All rights reserved.</p>
+                        <p>&nbsp;</p>
+                        <p id="email">
+                            C:\Users\Your_Email><span id="input"></span><span id="cursor" class="blink">|</span>
+                        </p>
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+        <!-- <script src="cursorGrad.js"></script> -->
+        <script src="particles.js"></script>
+        <script>
+            let inputText = document.getElementById('input');
+            let emailV = '';
+            let messageV = '';
+            let subjectV = '';
+            let nameV = '';
+            function textInput(event) {
+                inputText = document.querySelector('.command-prompt-content p:last-child #input');
+                if (event.key === 'Backspace'){
+                    inputText.textContent = inputText.textContent.slice(0, -1);
+                }
+                else if (event.key === 'Enter' || event.key === 'Tab') {
+                    event.preventDefault();
+                    if (inputText.parentElement.id === 'email') {
+                        emailV = inputText.textContent.trim();
+                        document.getElementById('cursor').remove();
+
+                        const nextInput = document.createElement('p');
+                        nextInput.id = 'name';
+                        nextInput.innerHTML = `C:\\Users\\Your_Name><span id="input"></span><span id="cursor" class="blink">|</span>`;
+                        document.querySelector('.command-prompt-content').appendChild(nextInput);
+                    }
+                    if (inputText.parentElement.id === 'name') {
+                        nameV = inputText.textContent.trim();
+                        document.getElementById('cursor').remove();
+
+                        const nextInput = document.createElement('p');
+                        nextInput.id = 'subject';
+                        nextInput.innerHTML = `C:\\Users\\Your_Subject><span id="input"></span><span id="cursor" class="blink">|</span>`;
+                        document.querySelector('.command-prompt-content').appendChild(nextInput);
+                    }
+                    else if (inputText.parentElement.id === 'subject') {
+                        subjectV = inputText.textContent.trim();
+                        document.getElementById('cursor').remove();
+
+                        const nextInput = document.createElement('p');
+                        nextInput.id = 'message';
+                        nextInput.innerHTML = `C:\\Users\\Your_Message><span id="input"></span><span id="cursor" class="blink">|</span>`;
+                        document.querySelector('.command-prompt-content').appendChild(nextInput);
+
+                    }
+                    else if (inputText.parentElement.id === 'message') {
+                        messageV = inputText.textContent.trim();
+                        document.getElementById('cursor').remove();
+
+                        const nextInput = document.createElement('p');
+                        nextInput.id = 'confirm';
+                        nextInput.innerHTML = `> Do you want to send this message? [Y/N]
+                                            <span id="input"></span><span id="cursor" class="blink">|</span>`;
+                        document.querySelector('.command-prompt-content').appendChild(nextInput);
+                    }
+                    else if (inputText.parentElement.id === 'confirm') {
+
+                        const choice = inputText.textContent.trim().toLowerCase();
+                        if (choice == 'y' || choice == 'yes'){
+                            console.log('confirmed');
+                            sendEmail();
+                            document.getElementById('cursor').remove();
+                            const nextInput = document.createElement('p');
+                            nextInput.innerHTML = "> Message sent!";
+                            document.querySelector('.command-prompt-content').appendChild(nextInput);
+                        }
+                        else if (choice == 'n' || choice == 'no'){
+                            console.log('not confirmed');
+                            document.getElementById('cursor').remove();
+                            const nextInput = document.createElement('p');
+                            nextInput.id = 'restart';
+                            nextInput.innerHTML = `> Message cancelled. Send a new one? [Y/N]
+                                <span id="input"></span><span id="cursor" class="blink">|</span>`;
+                            document.querySelector('.command-prompt-content').appendChild(nextInput);
+                        }
+                    }
+                    else if (inputText.parentElement.id === 'restart') {
+                            const choice2 = inputText.textContent.trim().toLowerCase();
+                            document.getElementById('cursor').remove();
+                            if (choice2 == 'y' || choice2 == 'yes') {
+                                document.querySelector('.command-prompt-content').innerHTML = `
+                                    <p>Contact Me [Version 10.0.26100.4061]</p>
+                                    <p>(c) Carina Zheng. All rights reserved.</p>
+                                    <p>&nbsp;</p>`;
+                                const newInput = document.createElement('p');
+                                newInput.id = 'email';
+                                newInput.innerHTML = `C:\\Users\\Your_Email><span id="input"></span><span id="cursor" class="blink">|</span>`;
+                                document.querySelector('.command-prompt-content').appendChild(newInput);
+                            } else {
+                                const nextInput = document.createElement('p');
+                                nextInput.innerHTML = "> Goodbye!";
+                                document.querySelector('.command-prompt-content').appendChild(nextInput);
+                            }
+                        }
+                        else if (inputText.parentElement.id === 'restart') {
+                            const choice2 = inputText.textContent.trim().toLowerCase();
+                            document.getElementById('cursor').remove();
+                            if (choice2 == 'y' || choice2 == 'yes') {
+                                document.querySelector('.command-prompt-content').innerHTML = '';
+                                const newInput = document.createElement('p');
+                                newInput.id = 'email';
+                                newInput.innerHTML = `C:\\Users\\Your_Email><span id="input"></span><span id="cursor" class="blink">|</span>`;
+                                document.querySelector('.command-prompt-content').appendChild(newInput);
+                            } else {
+                                const nextInput = document.createElement('p');
+                                nextInput.innerHTML = "> Goodbye!";
+                                document.querySelector('.command-prompt-content').appendChild(nextInput);
+                            }
+                        }
+                }
+                else if (event.key.length === 1 && !event.ctrlKey && !event.metaKey) {
+                    inputText.textContent += event.key;
+                }
+
+            }
+            document.addEventListener('click', burstParticles);
+            window.addEventListener('keydown', textInput);
+        </script>
+
+        <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+        <script type="text/javascript">
+            (function(){
+                emailjs.init({
+                    publicKey: "uvIIcIKU3QKVkQrcC",
+                });
+            })();
+
+            function sendEmail() {
+                console.log('sendEmail called');
+                emailjs.send('service_j4tztpr', 'template_xm42fye', {
+                    email: emailV,
+                    subject: subjectV,
+                    message: messageV,
+                    name: nameV
+                }).then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                }, function(error) {
+                    console.log('FAILED...', error);
+                });
+            }
+        </script>
+    
+        
+    </body>
+</html>

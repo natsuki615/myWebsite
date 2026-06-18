@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>car's portfolio</title>
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">        <style>
+            body {
+                background: #fff;
+            }
+            #mainContent {
+                transition: 
+                  background-color 0.5s cubic-bezier(0.4,0,0.2,1),
+                  color 0.5s cubic-bezier(0.4,0,0.2,1),
+                  transform 0.2s cubic-bezier(0.4,0,0.2,1),
+                  opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+                will-change: transform, background-color, color, opacity;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100vw;
+                height: 100vh;
+                position: relative;
+            }
+
+            #bgVideo {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                width: 100vw;
+                height: 80vh;
+                object-fit: cover;
+                z-index: -1;
+                pointer-events: none;
+                transform: translate(-50%, -50%);
+            }
+            .titleLetters {
+                position: absolute;
+                top: 50%;
+                left : 50%;
+                transform: translate(-50%, -50%);
+                margin: 0;
+                padding: 0;
+                color: #fff;
+                font-size: 10vw;
+                text-align: center;
+            }
+            .titleLetters .line {
+                display: inline-block;
+                white-space: nowrap;
+            }
+            .titleLetters span {
+                display: inline-block;
+                transition: transform 0.3s ease-out;
+                transform-origin: center center;
+                margin: 0 -1vw;
+                font-weight: bold;
+            }
+            .titleLetters span small{
+                font-weight: normal;
+                font-size: 5vw;
+            }
+
+            .dot {
+                height: 16px;
+                width: 16px;
+                background-color: #ffe058;
+                opacity: 0.5;
+                border-radius: 50%;
+                position: absolute;
+                pointer-events: none;
+                left: -1;
+                top: -1;
+                z-index: 1000;
+            }
+
+            canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: block;
+                pointer-events: none;
+                z-index: 0;
+                background-color: transparent; 
+            }
+
+        </style>
+    </head>
+
+<body>
+    <canvas id="cv"></canvas>
+    <div class="dot"></div>
+
+    <video id="bgVideo" autoplay loop muted playsinline>
+        <source src="assets/videos/tdfinal-short.mp4" type="video/mp4">
+    </video>
+
+    <main id="mainContent">
+        <div class="titleLetters" id="titleLetters">
+            <div class="line">
+                <span><small>c</small></span>
+                <span><small>o</small></span>
+                <span><small>m</small></span>
+                <span><small>p</small></span>
+                <span><small>u</small></span>
+                <span><small>t</small></span>
+                <span><small>a</small></span>
+                <span><small>t</small></span>
+                <span><small>i</small></span>
+                <span><small>o</small></span>
+                <span><small>n</small></span>
+                <span><small>&nbsp</small></span>
+                <span><small>w</small></span>
+                <span><small>i</small></span>
+                <span><small>t</small></span>
+                <span><small>h</small></span>
+                <span><small>&nbsp</small></span>
+                <span><small>a</small></span>
+            </div>
+             <div class="line">
+                <span>h</span>
+                <span>u</span>
+                <span>m</span>
+                <span>a</span>
+                <span>n</span>
+                <span>&nbsp</span>
+                <span>p</span>
+                <span>u</span>
+                <span>l</span>
+                <span>s</span>
+                <span>e</span>
+                <span>&nbsp</span>
+             </div>
+            
+        </div>
+    </main>
+  
+    <script src="particles.js"></script>
+    <script>
+        let prevX = 0;
+        let prevY = 0;
+        let scale = 1;
+        let whiteBg = true;
+        const canvas = document.querySelector('canvas');
+        const dotSize = 16;
+        const letters = document.querySelectorAll('.titleLetters span');
+
+        function followMouse(event) {
+            const mouse = document.querySelector('.dot');
+            mouse.style.left = (event.pageX-dotSize/2)+'px';
+            mouse.style.top = (event.pageY-dotSize/2)+'px';
+        }
+
+        function drawOnScreen(event) {
+            const ctx = canvas.getContext('2d');
+            const letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m',
+                            'n','o','p','q','r','s','t','u','v','w','x', 'y','z', 
+                            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 
+                            'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
+                            'W', 'X', 'Y', 'Z'];
+            let i = Math.floor(Math.random()*letters.length);
+            const l = letters[i];
+
+            ctx.font = 'bold 16px Quicksand, sans-serif';
+            ctx.fillStyle = '#ffe058';
+            ctx.fillText(l, event.pageX, event.pageY);
+
+            ctx.fillStyle = 'rgba(112, 45, 194, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function zoom(event) {
+            event.preventDefault();
+            scale -= event.deltaY * 0.001;
+            scale = Math.max(0, Math.min(1, scale));
+            document.getElementById('titleLetters').style.transform = `translate(-50%, -50%) scale(${scale})`;
+            document.getElementById('titleLetters').style.filter = `blur(${(1-scale)*6}px)`;
+            ////////////////
+            const maxR = 360;
+            const rotation = (1-scale) * maxR;
+            letters.forEach((data) => {
+                data.style.transform = `rotate(${rotation}deg)`;
+            });
+            /////////////////
+            if (scale <= 0.01) {
+                window.location.href = "aboutme.html";
+            }
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        document.addEventListener('mousemove', followMouse);
+        // document.addEventListener('mousemove', drawOnScreen);
+        document.addEventListener('click', burstParticles);
+        window.addEventListener('wheel', zoom, { passive: false });
+        // console.log('running handleScroll');
+        // window.addEventListener('wheel', handleScroll);
+        // handleScroll();
+    </script>
+</body>
+</html>
